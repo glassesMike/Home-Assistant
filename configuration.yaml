@@ -1,0 +1,126 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  temperature_unit: F
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  time_zone: America/New_York
+
+  customize: !include customize.yaml
+
+zone:
+  name: Work
+  latitude: !secret work_latitude
+  longitude: !secret work_longitude
+  radius: 250
+  icon: mdi:worker
+
+# Track the sun
+sun:
+
+# View all events in a logbook
+logbook:
+
+# Checks for available updates
+updater:
+
+zwave:
+  usb_path: /dev/ttyACM0
+  config_path: /usr/local/lib/python3.4/dist-packages/libopenzwave-0.3.1-py3.4-linux-armv7l.egg/config
+
+# Prediction of weather
+sensor: !include sensors.yaml
+
+camera:
+  platform: generic
+  still_image_url: https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?station=OKX&brand=wui&num=6&delay=50&type=N0R&frame=0&scale=0.25&noclutter=0&showstorms=5&mapx=400&mapy=240&centerx=814.9913043478261&centery=189.14347826086953&transx=414.99130434782614&transy=-50.85652173913047&showlabels=1&severe=0&rainsnow=0&lightning=0&smooth=0&rand=24475735&lat=0&lon=0&label=you
+  name: Weather Map
+
+# Enables support for tracking state changes over time.
+history:
+
+# Discover some devices automatically
+discovery:
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Allows you to issue voice commands from the frontend
+conversation:
+
+# Enables the frontend
+frontend:
+
+http:
+  api_password: !secret http_password
+  ssl_certificate: !secret ssl_path
+  ssl_key: !secret ssl_key
+
+device_tracker:
+  - platform: asuswrt
+    host: 192.168.1.1
+    username: admin
+    ssh_key: !secret ssh_key
+    mode: router
+
+alexa: !include devices/alexa.yaml
+
+switch:
+  - platform: command_line
+    switches:
+      PC:
+        offcmd: 'net rpc shutdown -I _REDACTED_ -U Mike%_REDACTED_'
+  - platform: wake_on_lan
+    mac_address: !secret wol_mac_address
+    name: "WOL"
+    host: _REDACTED_
+  - platform: template
+    switches:
+      copy:
+        value_template: '{{ states.switch.wol.state }}'
+        turn_on:
+          service: switch.turn_on
+          entity_id: switch.wol
+        turn_off:
+          service: switch.turn_off
+          entity_id: switch.pc
+
+wemo:
+  static:
+    - 192.168.1.241
+
+ecobee:
+  api_key: !secret ecobee_api_key
+  hold_temp: True
+
+media_player livingroom:
+  platform: webostv
+  host: 192.168.1.15
+
+media_player bedroom:
+  platform: webostv
+  host: 192.168.1.53
+
+media_player chromecast:
+  platform: cast
+  host: 192.168.1.108
+
+media_player plex:
+  platform: plex
+
+light:
+  platform: hue
+  host: 192.168.1.111
+  allow_unreachable: true
+
+notify:
+  platform: pushbullet
+  api_key: !secret pushbullet_api_key
+
+group: !include groups.yaml
+
+scene: !include_dir_merge_list scenes
+
+automation: !include_dir_merge_list automations
+
+input_boolean: !include input_boolean.yaml

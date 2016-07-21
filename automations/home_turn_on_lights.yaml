@@ -1,0 +1,33 @@
+  - alias: Mike Home Turn on Lights
+    trigger:
+      platform: state
+      entity_id: device_tracker._REDACTED_
+      from: 'not_home'
+      to: 'home'
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.home_away
+        state: 'off'
+    action:
+      service: scene.turn_on
+      entity_id: scene.downstairs_normal
+
+  - alias: Ashley Home Turn on Lights
+    trigger:
+      platform: state
+      entity_id: device_tracker._REDACTED_
+      from: 'not_home'
+      to: 'home'
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.home_away
+        state: 'off'
+    action:
+      service: scene.turn_on
+      entity_id: scene.downstairs_normal

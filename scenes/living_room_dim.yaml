@@ -1,0 +1,11 @@
+  - name: Livingroom dim
+    entities:
+      group.living_room:
+        state: on
+        transition: 2
+        brightness: 26
+        xy_color: [ 0.5608, 0.4042 ]
+      group.bar:
+        state: on
+        transition: 2
+        brightness: 73

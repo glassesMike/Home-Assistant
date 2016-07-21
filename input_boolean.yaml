@@ -1,0 +1,58 @@
+##############################################################
+## Input Boolean  ##
+##############################################################
+
+  sunset_exterior_disable:
+    name: Disable Exterior Lights On at Sunset
+    initial: off
+    icon: mdi:weather-sunset-down
+
+  sunrise_exterior_disable:
+    name: Disable Exterior Lights Off at Sunrise
+    initial: off
+    icon: mdi:weather-sunset-up
+
+  lower_bed_vol_disable:
+    name: Disable Lower Bedroom Volume at 11pm
+    initial: off
+    icon: mdi:volume-low
+
+  rainy_day_disable:
+    name: Disable Rainy Day Lighting
+    initial: on
+    icon: mdi:water-off
+
+  lr_playing_night_disable:
+    name: Disable Living Room Playing Night
+    initial: off
+    icon: mdi:play
+
+  lr_pause_night_disable:
+    name: Disable Living Room Pause Night
+    initial: off
+    icon: mdi:pause
+
+  lr_playing_day_rain_disable:
+    name: Disable Living Room Playing Day Rain
+    initial: off
+    icon: mdi:play
+
+  lr_pause_day_rain_disable:
+    name: Disable Living Room Pause Day Rain
+    initial: off
+    icon: mdi:pause
+
+  livingroom_dim:
+    name: Dim Living Room
+    initial: off
+    icon: mdi:lightbulb-outline
+
+  livingroom_brighten:
+    name: Brighten Living Room
+    initial: off
+    icon: mdi:lightbulb
+
+  home_away:
+    name: Home Lights Away
+    initial: off
+    icon: mdi:walk

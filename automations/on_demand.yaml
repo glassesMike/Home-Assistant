@@ -1,0 +1,21 @@
+#################################################################
+## Automations On-Demand
+#################################################################
+
+  - alias: 'Living Room Dim'
+    trigger:
+      - platform: state
+        entity_id: input_boolean.livingroom_dim
+        state: 'on'
+    action:
+      service: scene.turn_on
+      entity_id: scene.livingroom_dim
+
+  - alias: 'Living Room Brighten'
+    trigger:
+      - platform: state
+        entity_id: input_boolean.livingroom_brighten
+        state: 'on'
+    action:
+      service: scene.turn_on
+      entity_id: scene.livingroom_normal

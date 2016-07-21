@@ -1,0 +1,16 @@
+  - alias: Turn on Lights at Sunset
+    trigger:
+      platform: sun
+      event: 'sunset'
+      offset: '-00:05:00'
+    condition:
+      - condition: state
+        entity_id: input_boolean.sunset_exterior_disable
+        state: 'off'
+    action:
+      service: light.turn_on
+      entity_id: group.exterior_lights
+      data:
+        # 900 seconds = 15 minutes
+        transition: 300
+        brightness: 100

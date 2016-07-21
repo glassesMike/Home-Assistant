@@ -1,0 +1,32 @@
+  - alias: Rainy Day First Floor
+    trigger:
+      platform: state
+      entity_id: sensor.weather_icon
+      state: 'rain'
+
+    condition:
+      condition: and
+      conditions:
+        - condition: time
+          after: '10:00'
+        - condition: state
+          entity_id: sun.sun
+          state: 'above_horizon'
+        - condition: state
+          entity_id: input_boolean.rainy_day_disable
+          state: 'off'
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: device_tracker._REDACTED_
+              state: 'home'
+            - condition: state
+              entity_id: device_tracker._REDACTED_
+              state: 'home'
+
+    action:
+      service: light.turn_on
+      entity_id: group.downstairs
+      data:
+       xy_color: [ 0.5134, 0.4149 ]
+       brightness: 144

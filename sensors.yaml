@@ -1,0 +1,36 @@
+  - platform: yr
+ #sensor 2  
+  - platform: forecast
+    api_key: !secret forecast_api_key
+    monitored_conditions:
+      - summary
+      - minutely_summary
+      - hourly_summary
+      - daily_summary
+      - icon
+      - nearest_storm_distance
+      - nearest_storm_bearing
+      - precip_type
+      - precip_intensity
+      - precip_probability
+      - temperature
+      - apparent_temperature
+      - dew_point
+      - wind_speed
+      - wind_bearing
+      - cloud_cover
+      - humidity
+      - pressure
+      - visibility
+      - ozone
+ #sensor 3
+  - platform: systemmonitor
+    resources:
+      - type: memory_use
+      - type: memory_free
+      - type: processor_use
+ #sensor 4
+  - platform: google_travel_time
+    api_key: !secret gtt_api_key
+    origin: zone.home
+    destination: zone.work

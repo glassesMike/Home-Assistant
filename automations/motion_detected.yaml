@@ -1,0 +1,75 @@
+  - alias: Motion Detected LR Away
+    trigger:
+      platform: state
+      entity_id: sensor.living_room_occupancy
+      state: 'true'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: device_tracker._REDACTED_
+          state: 'not_home'
+        - condition: state
+          entity_id: device_tracker._REDACTED_
+          state: 'not_home'
+    action:
+      service: notify.notify
+      data:
+        message: 'Motion detected in Living Room.'
+
+  - alias: Motion Detected Therm Away
+    trigger:
+      platform: state
+      entity_id: sensor.home_occupancy
+      state: 'true'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: device_tracker._REDACTED_
+          state: 'not_home'
+        - condition: state
+          entity_id: device_tracker._REDACTED_
+          state: 'not_home'
+    action:
+      service: notify.notify
+      data:
+        message: 'Motion detected near thermostat.'
+
+  - alias: Motion Detected Office Away
+    trigger:
+      platform: state
+      entity_id: sensor.office_occupancy
+      state: 'true'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: device_tracker._REDACTED_
+          state: 'not_home'
+        - condition: state
+          entity_id: device_tracker._REDACTED_
+          state: 'not_home'
+    action:
+      service: notify.notify
+      data:
+        message: 'Motion detected in Office.'
+
+  - alias: Motion Detected Bedroom Away
+    trigger:
+      platform: state
+      entity_id: sensor.bedroom_occupancy
+      state: 'true'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: device_tracker._REDACTED_
+          state: 'not_home'
+        - condition: state
+          entity_id: device_tracker._REDACTED_
+          state: 'not_home'
+    action:
+      service: notify.notify
+      data:
+        message: 'Motion detected in Bedroom.'

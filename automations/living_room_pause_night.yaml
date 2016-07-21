@@ -1,0 +1,15 @@
+  - alias: "LR Pause Night"
+    trigger:
+      platform: state
+      entity_id: media_player.plex_for_lg_webos_031525
+      from: 'playing'
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.lr_pause_night_disable
+        state: 'off'
+    action:
+      service: scene.turn_on
+      entity_id: scene.livingroom_normal

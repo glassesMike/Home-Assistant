@@ -1,0 +1,11 @@
+  - name: Livingroom normal
+    entities:
+      group.living_room:
+        state: on
+        transition: 2
+        brightness: 190
+        xy_color: [ 0.457, 0.4098 ]
+      group.bar:
+        state: on
+        transition: 2
+        brightness: 228

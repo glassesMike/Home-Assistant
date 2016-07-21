@@ -1,0 +1,17 @@
+  - alias: Lower Bedroom TV volume at 11 pm
+    trigger:
+      platform: time
+      after: '23:00:00'
+
+    condition:
+      - condition: state
+        entity_id: media_player.lg_webos_tv_remote
+        state: 'playing'
+      - condition: state
+        entity_id: input_boolean.lower_bed_vol_disable
+        state: 'off'
+    action:
+      service: media_player.volume_set
+      data:
+        entity_id: media_player.lg_webos_tv_remote
+        volume_level: 0.1

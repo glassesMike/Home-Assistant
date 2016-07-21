@@ -1,0 +1,155 @@
+#################################################################
+## Groups
+#################################################################
+
+   default_view:
+     view: yes
+     entities:
+       - group.media
+       - device_tracker._REDACTED_
+       - device_tracker._REDACTED_
+       - group.pc
+       - thermostat.home
+       - sensor.home_temperature
+       - sensor.home_occupancy
+       - sensor.home_humidity
+       - sensor.living_room_temperature
+       - sensor.living_room_occupancy
+       - sensor.bedroom_temperature
+       - sensor.bedroom_occupancy
+       - sensor.office_temperature
+       - sensor.office_occupancy
+       - group.system
+       - group.travel
+
+   Lights:
+     view: yes
+     entities:
+       - group.office
+       - group.bedroom
+       - group.upstairs
+       - group.kitchen
+       - group.bar
+       - group.living_room
+       - group.closets
+       - group.upstairs
+       - group.downstairs
+       - group.interior_lights
+       - group.exterior_lights
+       - group.house_lights
+
+   Bedroom:
+      - light.hue_color_lamp_1
+      - light.hue_color_lamp_4
+
+   Office:
+     - light.hue_color_lamp_2
+     - light.hue_color_lamp_3
+
+   Kitchen:
+     - light.hue_color_downlight_1
+     - light.hue_color_downlight_2
+     - light.hue_color_downlight_3
+     - light.hue_color_downlight_4
+
+   Bar:
+     - light.hue_white_lamp_5
+     - light.hue_white_lamp_6
+     - light.hue_white_lamp_7
+
+   Living Room:
+     - light.hue_color_downlight_5
+     - light.hue_color_downlight_6
+     - light.hue_color_downlight_7
+     - light.hue_color_downlight_8
+
+   Closets:
+     - light.hue_white_lamp_4
+
+   Upstairs:
+     - group.office
+     - group.bedroom
+     - light.hue_white_lamp_4
+ 
+   Downstairs:
+     - group.kitchen
+     - group.bar
+     - group.living_room
+
+   Interior Lights:
+     - group.upstairs
+     - group.downstairs
+     - group.closets
+     - light.hue_white_lamp_2
+
+   Exterior Lights:
+     - light.hue_white_lamp_1
+     - light.hue_white_lamp_3
+
+   House Lights:
+     - group.interior_lights
+     - group.exterior_lights
+
+   Media:
+     - media_player.lg_webos_tv_remote
+     - media_player.lg_webos_tv_remote_2
+     - configurator.lg_webos_tv
+     - media_player.office
+
+   Devices:
+     - device_tracker._REDACTED_
+     - device_tracker._REDACTED_
+
+   System:
+     - sensor.cpu_use
+     - sensor.ram_free
+     - sensor.ram_use
+
+   PC:
+     - switch.wol
+     - switch.pc
+     - switch.copy
+
+   Travel:
+     - sensor.google_travel_time__driving
+
+   Weather:
+     view: yes
+     entities:
+       - group.weather_summary
+       - group.weather_detailed
+       - group.weather_map
+
+   Weather Summary:
+     - sensor.weather_summary
+     - sensor.weather_temperature
+     - sun.sun
+     - sensor.weather_precip_probability
+     - sensor.weather_wind_speed
+
+   Weather Detailed:
+     - sensor.weather_daily_summary
+     - sensor.weather_hourly_summary
+
+   Weather Map:
+     - camera.weather_map
+
+   Automation:
+     view: yes
+     entities:
+       - group.automation_override
+       - group.automation_ondemand
+
+   Automation Override:
+     - input_boolean.sunset_exterior_disable
+     - input_boolean.sunrise_exterior_disable
+     - input_boolean.lower_bed_vol_disable
+     - input_boolean.rainy_day_disable
+     - input_boolean.lr_playing_night_disable
+     - input_boolean.lr_pause_night_disable
+     - input_boolean.lr_playing_day_rain_disable
+     - input_boolean.lr_pause_day_rain_disable
+
+   Automation On-Demand:
+     - input_boolean.livingroom_dim
+     - input_boolean.livingroom_brighten
