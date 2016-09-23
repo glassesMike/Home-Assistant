@@ -1,0 +1,23 @@
+  - alias: Lock Front Door after 15 mins
+    trigger:
+      platform: state
+      entity_id: lock.front_door_lock
+      from: 'locked'
+      to: 'unlocked'
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+    condition:
+      - condition: state
+        entity_id: input_boolean.disable_lock_unlock_doors
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.front_door_sensor
+        state: 'off'
+      - condition: state
+        entity_id: lock.front_door_lock
+        state: 'unlocked'
+    action:
+      service: lock.lock
+      entity_id: lock.front_door_lock

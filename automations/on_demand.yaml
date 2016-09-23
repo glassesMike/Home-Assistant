@@ -19,3 +19,30 @@
     action:
       service: scene.turn_on
       entity_id: scene.livingroom_normal
+
+  - alias: 'Panic Mode'
+    trigger:
+      - platform: state
+        entity_id: input_boolean.panic_mode
+        state: 'on'
+    action:
+      service: scene.turn_on
+      entity_id: scene.security
+
+  - alias: 'Restart Home Assistant'
+    trigger:
+      - platform: state
+        entity_id: input_boolean.restart_ha
+        state: 'on'
+    action:
+      service: script.turn_on
+      entity_id: script.restart_ha
+
+  - alias: 'Update Home Assistant'
+    trigger:
+      - platform: state
+        entity_id: input_boolean.update_ha
+        state: 'on'
+    action:
+      service: script.turn_on
+      entity_id: script.update_ha

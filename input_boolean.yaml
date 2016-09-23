@@ -12,6 +12,11 @@
     initial: off
     icon: mdi:weather-sunset-up
 
+  disable_lock_unlock_doors:
+    name: Disable Auto Lock Doors
+    initial: off
+    icon: mdi:lock-plus 
+
   lower_bed_vol_disable:
     name: Disable Lower Bedroom Volume at 11pm
     initial: off
@@ -45,14 +50,44 @@
   livingroom_dim:
     name: Dim Living Room
     initial: off
-    icon: mdi:lightbulb-outline
+    icon: mdi:lightbulb
 
   livingroom_brighten:
     name: Brighten Living Room
     initial: off
-    icon: mdi:lightbulb
+    icon: mdi:lightbulb-outline
 
   home_away:
-    name: Home Lights Away
+    name: Disable Home Lights Away
     initial: off
-    icon: mdi:walk
+    icon: mdi:map-marker-off
+
+  disable_security:
+    name: Disable Security
+    initial: on
+    icon: mdi:security
+
+  panic_mode:
+    name: Panic Mode
+    initial: off
+    icon: mdi:shield-outline
+
+  alarm_status:
+    name: Alarm Status
+    initial: off
+    icon: mdi:shield-outline
+
+  weekend_away_thermostat_disable:
+    name: Disable Weekend Thermostat Automation
+    initial: off
+    icon: mdi:thermometer-lines
+
+  restart_ha:
+    name: Restart Home Assistant
+    initial: off
+    icon: mdi:power
+
+  update_ha:
+    name: Update Home Assistant
+    initial: off
+    icon: mdi:update

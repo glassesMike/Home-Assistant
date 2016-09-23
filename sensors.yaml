@@ -34,3 +34,13 @@
     api_key: !secret gtt_api_key
     origin: zone.home
     destination: zone.work
+ #sensor 5
+  - platform: template
+    sensors:
+      living_room_tv_source:
+        value_template: '{{ states.media_player.lg_webos_tv_remote_2.attributes["source"] }}'
+        friendly_name: 'Living Room TV Source'
+ #sensor 6
+  - platform: time_date
+    display_options:
+      - "date_time"

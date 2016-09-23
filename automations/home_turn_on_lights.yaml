@@ -1,33 +1,143 @@
-  - alias: Mike Home Turn on Lights
+  - alias: Home Turn on Lights
     trigger:
       platform: state
-      entity_id: device_tracker._REDACTED_
-      from: 'not_home'
-      to: 'home'
+      entity_id: binary_sensor.front_door_sensor
+      from: 'off'
+      to: 'on'
     condition:
       - condition: state
         entity_id: sun.sun
         state: 'below_horizon'
       - condition: state
         entity_id: input_boolean.home_away
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'on'
+      - condition: state
+        entity_id: group.main_floor
         state: 'off'
     action:
       service: scene.turn_on
       entity_id: scene.downstairs_normal
 
-  - alias: Ashley Home Turn on Lights
+  - alias: Turn on Bedroom Closet when Door Opens
     trigger:
       platform: state
-      entity_id: device_tracker._REDACTED_
-      from: 'not_home'
-      to: 'home'
+      entity_id: binary_sensor.ecolink_doorwindow_sensor_sensor_2
+      from: 'off'
+      to: 'on'
+    action:
+      service: light.turn_on
+      entity_id: light.hue_white_lamp_4
+      data:
+        brightness: 255
+
+  - alias: Turn off Bedroom Closet when Door Closes
+    trigger:
+      platform: state
+      entity_id: binary_sensor.ecolink_doorwindow_sensor_sensor_2
+      from: 'on'
+      to: 'off'
+    action:
+      service: light.turn_off
+      entity_id: light.hue_white_lamp_4
+
+  - alias: Turn on Laundry Room when Laundry Door Opens
+    trigger:
+      platform: state
+      entity_id: binary_sensor.laundry_room_sensor
+      from: 'off'
+      to: 'on'
     condition:
       - condition: state
-        entity_id: sun.sun
-        state: 'below_horizon'
-      - condition: state
-        entity_id: input_boolean.home_away
+        entity_id: light.hue_white_lamp_8
         state: 'off'
     action:
-      service: scene.turn_on
-      entity_id: scene.downstairs_normal
+      service: light.turn_on
+      entity_id: light.hue_white_lamp_8
+
+  - alias: Turn on Laundry Room when Interior Garage Opens
+    trigger:
+      platform: state
+      entity_id: binary_sensor.garage_door_sensor
+      from: 'off'
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: light.hue_white_lamp_8
+        state: 'off'
+    action:
+      service: light.turn_on
+      entity_id: light.hue_white_lamp_8
+
+  - alias: Turn off Laundry Room when Laundry Door Closes
+    trigger:
+      platform: state
+      entity_id: binary_sensor.laundry_room_sensor
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 45
+    condition:
+      - condition: state
+        entity_id: light.hue_white_lamp_8
+        state: 'on'
+    action:
+      service: light.turn_off
+      entity_id: light.hue_white_lamp_8
+
+  - alias: Turn off Laundry Room when Interior Garage Closes
+    trigger:
+      platform: state
+      entity_id: binary_sensor.garage_door_sensor
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 45
+    condition:
+      - condition: state
+        entity_id: light.hue_white_lamp_8
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.laundry_room_sensor
+        state: 'off'
+    action:
+      service: light.turn_off
+      entity_id: light.hue_white_lamp_8
+
+  - alias: Turn on Garage when Interior Garage Opens
+    trigger:
+      platform: state
+      entity_id: binary_sensor.garage_door_sensor
+      from: 'off'
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: light.hue_white_lamp_8
+        state: 'on'
+    action:
+      service: light.turn_on
+      entity_id: light.hue_white_lamp_2
+
+  - alias: Turn off Garage when Interior Garage Closes
+    trigger:
+      platform: state
+      entity_id: binary_sensor.garage_door_sensor
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+    condition:
+      - condition: state
+        entity_id: light.hue_white_lamp_2
+        state: 'on'
+    action:
+      service: light.turn_off
+      entity_id: light.hue_white_lamp_2

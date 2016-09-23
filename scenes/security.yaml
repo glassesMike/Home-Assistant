@@ -1,0 +1,57 @@
+  - name: Security
+    entities:
+      input_boolean.alarm_status:
+        state: on
+      group.living_room:
+        state: on
+        flash: long
+        brightness: 255
+        xy_color: [0.6531,0.2834]
+      group.kitchen:
+        state: on
+        flash: long
+        brightness: 255
+        xy_color: [0.6531,0.2834]
+      group.bedroom:
+        state: on
+        flash: long
+        brightness: 255
+        xy_color: [0.6531,0.2834]
+      group.office:
+        state: on
+        flash: long
+        brightness: 255
+        xy_color: [0.6531,0.2834]
+      group.bar:
+        state: on
+        flash: long
+        brightness: 255
+      group.exterior_lights:
+        state: on
+        flash: long
+        brightness: 255
+      light.hue_white_lamp_2:
+        state: on
+        flash: long
+        brightness: 255
+      light.hue_white_lamp_4:
+        state: on
+        flash: long
+        brightness: 255
+      light.hue_white_lamp_8:
+        state: on
+        flash: long
+        brightness: 255
+      group.sirens:
+        state: on
+
+  - name: Alarm off
+    entities:
+      input_boolean.panic_mode:
+        state: off
+      input_boolean.disable_security:
+        state: on
+      group.house_lights:
+        state: off
+      group.sirens:
+        state: off

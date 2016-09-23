@@ -1,0 +1,198 @@
+####################################
+## Security Automations 
+####################################
+
+  - alias: Disable Alarm when Home
+    trigger:
+      platform: state
+      entity_id: group.devices
+      from: 'not_home'
+      to: 'home'
+    action:
+      service: homeassistant.turn_on
+      entity_id: input_boolean.disable_security
+
+  - alias: Enable Alarm when Away
+    trigger:
+      platform: state
+      entity_id: group.devices
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+    action:
+      service: homeassistant.turn_off
+      entity_id: input_boolean.disable_security
+
+  - alias: Disable Alarm at 6am
+    trigger:
+      platform: time
+      after: '06:00:00'
+    condition:
+      - condition: state
+        entity_id: group.devices
+        state: 'home'
+    action:
+      service: homeassistant.turn_on
+      entity_id: input_boolean.disable_security
+
+  - alias: Enable Alarm at 1am
+    trigger:
+      platform: time
+      after: '01:00:00'
+    action:
+      service: homeassistant.turn_off
+      entity_id: input_boolean.disable_security
+
+  - alias: Disable Alarm when Front Door Unlocks
+    trigger:
+      platform: state
+      entity_id: lock.front_door_lock
+      from: 'locked'
+      to: 'unlocked'
+    action:
+      service: homeassistant.turn_on
+      entity_id: input_boolean.disable_security
+
+  - alias: Disable Alarm when Alarm Status Switched Off
+    trigger:
+      platform: state
+      entity_id: input_boolean.alarm_status
+      from: 'on'
+      to: 'off'
+    action:
+      service: scene.turn_on
+      entity_id: scene.alarm_off
+
+  - alias: Motion Detected Bedroom Balcony
+    trigger:
+      platform: state
+      entity_id: binary_sensor.ecolink_doorwindow_sensor_sensor_3
+      from: 'off'
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+    action:
+      service: scene.turn_on
+      entity_id: scene.security
+
+  - alias: Motion Detected Front Door
+    trigger:
+      platform: state
+      entity_id: binary_sensor.front_door_sensor
+      from: 'off'
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+    action:
+      service: scene.turn_on
+      entity_id: scene.security
+
+  - alias: Motion Detected Back Door
+    trigger:
+      platform: state
+      entity_id: binary_sensor.back_door_sensor
+      from: 'off'
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+    action:
+      service: scene.turn_on
+      entity_id: scene.security
+
+  - alias: Motion Detected Laundry Room
+    trigger:
+      platform: state
+      entity_id: binary_sensor.laundry_room_sensor
+      from: 'off'
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+    action:
+      service: scene.turn_on
+      entity_id: scene.security
+
+  - alias: Motion Detected Office Window 1
+    trigger:
+      platform: state
+      entity_id: binary_sensor.office_window_sensor
+      from: 'off'
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+    action:
+      service: scene.turn_on
+      entity_id: scene.security
+
+  - alias: Motion Detected Office Window 2
+    trigger:
+      platform: state
+      entity_id: binary_sensor.office_window_sensor_2
+      from: 'off'
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+    action:
+      service: scene.turn_on
+      entity_id: scene.security
+
+  - alias: Motion Detected Living Room
+    trigger:
+      platform: state
+      entity_id: binary_sensor.living_room_motion_sensor
+      from: 'off'
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+    action:
+      service: scene.turn_on
+      entity_id: scene.security
+
+  - alias: Motion Detected Stairs
+    trigger:
+      platform: state
+      entity_id: binary_sensor.stairs_motion_sensor
+      from: 'off'
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.disable_security
+        state: 'off'
+    action:
+      service: scene.turn_on
+      entity_id: scene.security
+
+####################################
+## Security Notifications
+####################################
+
+  - alias: Security Notify
+    trigger:
+      platform: state
+      entity_id: input_boolean.alarm_status
+      from: 'off'
+      to: 'on'
+    action:
+      service: notify.notify
+      data_template:
+        message: 'Alarm Tripped!'
+        data:
+          location:
+            latitude: ""
+            longitude: ""

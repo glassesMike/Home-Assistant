@@ -1,7 +1,7 @@
 homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
-  temperature_unit: F
+  unit_system: imperial
   latitude: !secret home_latitude
   longitude: !secret home_longitude
   time_zone: America/New_York
@@ -61,19 +61,25 @@ device_tracker:
     host: 192.168.1.1
     username: admin
     ssh_key: !secret ssh_key
-    mode: router
 
 alexa: !include devices/alexa.yaml
+
+script: !include scripts.yaml
+shell_command: !include shell_commands.yaml
+
+wemo:
+  static:
+    - 192.168.1.251
 
 switch:
   - platform: command_line
     switches:
-      PC:
-        offcmd: 'net rpc shutdown -I _REDACTED_ -U Mike%_REDACTED_'
+      pc:
+        command_off: !secret pc_command_off
   - platform: wake_on_lan
     mac_address: !secret wol_mac_address
-    name: "WOL"
-    host: _REDACTED_
+    name: "wol"
+    host: 192.168.1.181
   - platform: template
     switches:
       copy:
@@ -85,9 +91,14 @@ switch:
           service: switch.turn_off
           entity_id: switch.pc
 
-wemo:
-  static:
-    - 192.168.1.241
+proximity:
+  zone: home
+  ignored_zones:
+    - work
+  devices:
+    - device_tracker._REDACTED_
+    - device_tracker._REDACTED_
+  tolerance: 50
 
 ecobee:
   api_key: !secret ecobee_api_key
@@ -95,7 +106,7 @@ ecobee:
 
 media_player livingroom:
   platform: webostv
-  host: 192.168.1.15
+  host: 192.168.1.219
 
 media_player bedroom:
   platform: webostv
@@ -112,6 +123,12 @@ light:
   platform: hue
   host: 192.168.1.111
   allow_unreachable: true
+
+ifttt:
+  key: !secret ifttt_key
+
+wink:
+  access_token: !secret wink_access_token
 
 notify:
   platform: pushbullet

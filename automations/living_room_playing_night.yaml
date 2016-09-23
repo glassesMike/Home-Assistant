@@ -1,12 +1,31 @@
   - alias: "LR Playing Night"
     trigger:
       platform: state
-      entity_id: media_player.plex_for_lg_webos_031525
+      entity_id: media_player.plex_for_lg_webos_043015
       to: 'playing'
     condition:
       - condition: state
         entity_id: sun.sun
         state: 'below_horizon'
+      - condition: state
+        entity_id: input_boolean.lr_playing_night_disable
+        state: 'off'
+    action:
+      service: scene.turn_on
+      entity_id: scene.livingroom_dim
+
+  - alias: "LR Playing Night Netflix"
+    trigger:
+      platform: state
+      entity_id: sensor.living_room_tv_source
+      to: 'Netflix'
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: state
+        entity_id: media_player.lg_webos_tv_remote_2
+        state: 'playing'
       - condition: state
         entity_id: input_boolean.lr_playing_night_disable
         state: 'off'

@@ -9,18 +9,10 @@
        - device_tracker._REDACTED_
        - device_tracker._REDACTED_
        - group.pc
-       - thermostat.home
-       - sensor.home_temperature
-       - sensor.home_occupancy
-       - sensor.home_humidity
-       - sensor.living_room_temperature
-       - sensor.living_room_occupancy
-       - sensor.bedroom_temperature
-       - sensor.bedroom_occupancy
-       - sensor.office_temperature
-       - sensor.office_occupancy
        - group.system
+       - group.thermostat
        - group.travel
+       - configurator.ecobee
 
    Lights:
      view: yes
@@ -63,6 +55,11 @@
      - light.hue_color_downlight_7
      - light.hue_color_downlight_8
 
+   Main Floor:
+     - group.kitchen
+     - group.bar
+     - group.living_room
+
    Closets:
      - light.hue_white_lamp_4
 
@@ -72,15 +69,14 @@
      - light.hue_white_lamp_4
  
    Downstairs:
-     - group.kitchen
-     - group.bar
-     - group.living_room
+     - group.main_floor
+     - light.hue_white_lamp_2
+     - light.hue_white_lamp_8
 
    Interior Lights:
      - group.upstairs
      - group.downstairs
      - group.closets
-     - light.hue_white_lamp_2
 
    Exterior Lights:
      - light.hue_white_lamp_1
@@ -99,6 +95,50 @@
    Devices:
      - device_tracker._REDACTED_
      - device_tracker._REDACTED_
+
+   Thermostat:
+     - climate.home
+     - sensor.home_temperature
+     - binary_sensor.home_occupancy
+     - sensor.home_humidity
+     - sensor.living_room_temperature
+     - binary_sensor.living_room_occupancy
+     - sensor.bedroom_temperature
+     - binary_sensor.bedroom_occupancy
+     - sensor.office_temperature
+     - binary_sensor.office_occupancy
+
+   Security:
+     view: yes
+     entities:
+       - group.alarm
+       - group.locks
+       - group.sensors
+       - group.sirens
+
+   Alarm:
+     - input_boolean.disable_security
+     - input_boolean.panic_mode
+     - input_boolean.alarm_status
+
+   Locks:
+     - lock.front_door_lock
+
+   Sensors:
+     - binary_sensor.ecolink_doorwindow_sensor_sensor_2
+     - binary_sensor.ecolink_doorwindow_sensor_sensor_3
+     - binary_sensor.garage_door_sensor
+     - binary_sensor.back_door_sensor
+     - binary_sensor.front_door_sensor
+     - binary_sensor.laundry_room_sensor
+     - binary_sensor.office_window_sensor
+     - binary_sensor.office_window_sensor_2
+     - binary_sensor.living_room_motion_sensor
+     - binary_sensor.stairs_motion_sensor
+
+   Sirens:
+     - switch.siren__strobe_downstairs
+     - switch.upstairs_siren__strobe
 
    System:
      - sensor.cpu_use
@@ -121,15 +161,16 @@
        - group.weather_map
 
    Weather Summary:
-     - sensor.weather_summary
-     - sensor.weather_temperature
+     - sensor.date__time
+     - sensor.forecastio_summary
+     - sensor.forecastio_temperature
      - sun.sun
-     - sensor.weather_precip_probability
-     - sensor.weather_wind_speed
+     - sensor.forecastio_precip_probability
+     - sensor.forecastio_wind_speed
 
    Weather Detailed:
-     - sensor.weather_daily_summary
-     - sensor.weather_hourly_summary
+     - sensor.forecastio_daily_summary
+     - sensor.forecastio_hourly_summary
 
    Weather Map:
      - camera.weather_map
@@ -143,13 +184,18 @@
    Automation Override:
      - input_boolean.sunset_exterior_disable
      - input_boolean.sunrise_exterior_disable
+     - input_boolean.disable_lock_unlock_doors
      - input_boolean.lower_bed_vol_disable
+     - input_boolean.home_away
      - input_boolean.rainy_day_disable
      - input_boolean.lr_playing_night_disable
      - input_boolean.lr_pause_night_disable
      - input_boolean.lr_playing_day_rain_disable
      - input_boolean.lr_pause_day_rain_disable
+     - input_boolean.weekend_away_thermostat_disable
 
    Automation On-Demand:
+     - input_boolean.restart_ha
+     - input_boolean.update_ha
      - input_boolean.livingroom_dim
      - input_boolean.livingroom_brighten

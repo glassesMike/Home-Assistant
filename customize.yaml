@@ -7,30 +7,28 @@
       entity_picture: /local/ashley.png
       friendly_name: "Ashley"
     media_player.lg_webos_tv_remote_2:
-      friendly_name: "Bedroom TV"
-    media_player.lg_webos_tv_remote:
       friendly_name: "Living Room TV"
+    media_player.lg_webos_tv_remote:
+      friendly_name: "Bedroom TV"
     media_player.office:
       friendly_name: "Chromecast"
-    sensor.weather_summary:
+    sensor.forecastio_summary:
       friendly_name: "Summary"
-    sensor.weather_temperature:
+      icon: mdi:clipboard-text
+    sensor.forecastio_temperature:
       friendly_name: "Temperature"
-    sensor.weather_precip_probability:
+    sensor.forecastio_precip_probability:
       friendly_name: "Precip"
-    sensor.weather_wind_speed:
+      icon: mdi:water
+    sensor.forecastio_wind_speed:
       friendly_name: "Wind Speed"
       icon: mdi:weather-windy
-    sensor.weather_daily_summary:
+    sensor.forecastio_daily_summary:
       friendly_name: "Daily"
-    sensor.weather_hourly_summary:
+      icon: mdi:clipboard-text
+    sensor.forecastio_hourly_summary:
       friendly_name: "Hourly"
-    switch.wol:
-      hidden: true
-    switch.pc:
-      hidden: true
-    switch.copy:
-      hidden: true
+      icon: mdi:clipboard-text
     light.hue_white_lamp_1:
       friendly_name: "Front Door"
     light.hue_white_lamp_2:
@@ -45,6 +43,8 @@
       friendly_name: "Bar 2"
     light.hue_white_lamp_7:
       friendly_name: "Bar 3"
+    light.hue_white_lamp_8:
+      friendly_name: "Laundry Room"
     light.hue_color_lamp_1:
       friendly_name: "Mike Nightstand"
     light.hue_color_lamp_4:
@@ -69,3 +69,35 @@
       friendly_name: "Living Room 3"
     light.hue_color_downlight_8:
       friendly_name: "Living Room 4"
+    sensor.home_humidity:
+      icon: mdi:water-percent
+    sensor.google_travel_time__driving:
+      icon: mdi:car
+    binary_sensor.ecolink_doorwindow_sensor_sensor_2:
+      friendly_name: "Bedroom Closet Sensor"
+      icon: mdi:home
+    binary_sensor.ecolink_doorwindow_sensor_sensor_3:
+      friendly_name: "Bedroom Balcony Sensor"
+      icon: mdi:home
+    binary_sensor.garage_door_sensor:
+      icon: mdi:home
+    binary_sensor.back_door_sensor:
+      icon: mdi:home
+    binary_sensor.front_door_sensor:
+      icon: mdi:home
+    binary_sensor.laundry_room_sensor:
+      icon: mdi:home
+    binary_sensor.office_window_sensor:
+      icon: mdi:home
+    binary_sensor.office_window_sensor_2:
+      icon: mdi:home
+    binary_sensor.living_room_motion_sensor:
+      icon: mdi:home
+    binary_sensor.stairs_motion_sensor:
+      icon: mdi:home
+    switch.siren__strobe_downstairs:
+      friendly_name: "Downstairs Siren"
+      icon: mdi:home
+    switch.upstairs_siren__strobe:
+      friendly_name: "Upstairs Siren"
+      icon: mdi:home

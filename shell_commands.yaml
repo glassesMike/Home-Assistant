@@ -1,0 +1,2 @@
+  restart_ha: service hass-daemon restart &
+  update_ha: pip3 install --upgrade homeassistant

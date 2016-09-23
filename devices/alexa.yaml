@@ -3,12 +3,12 @@
       speech:
         type: plaintext
         text: >
-          {%- if is_state('device_tracker._REDACTED_', 'home') and
-                 is_state('device_tracker._REDACTED_', 'home') -%}
+          {%- if is_state('device_tracker.androide3395e8611393fa9', 'home') and
+                 is_state('device_tracker.androidc98467ba676cb78f', 'home') -%}
             You are both home, you silly.
           {%- else -%}
-            Mike is at {{ states("device_tracker._REDACTED_") }} and
-            Ashley is at {{ states("device_tracker._REDACTED_") }}
+            Mike is at {{ states("device_tracker.androide3395e8611393fa9") }} and
+            Ashley is at {{ states("device_tracker.androidc98467ba676cb78f") }}
           {% endif %}
 
     LocateIntent:

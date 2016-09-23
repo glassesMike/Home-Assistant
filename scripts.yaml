@@ -1,0 +1,2 @@
+  restart_ha: !include scripts/restart_ha.yaml
+  update_ha: !include scripts/update_ha.yaml

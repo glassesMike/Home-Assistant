@@ -1,0 +1,39 @@
+  - alias: Weekend Away Thermostat Off
+    trigger:
+      platform: state
+      entity_id: group.devices
+      from: 'home'
+      to: 'not_home'
+    condition:
+      - condition: time
+        weekday:
+          - sat
+          - sun  
+      - condition: state
+        entity_id: input_boolean.weekend_away_thermostat_disable
+        state: 'off'
+    action:
+      entity_id: climate.home
+      service: climate.set_away_mode
+      data:
+        away_mode: 'on'
+
+  - alias: Weekend Home Thermostat On
+    trigger:
+      platform: state
+      entity_id: group.devices
+      from: 'not_home'
+      to: 'home'
+    condition:
+      - condition: time
+        weekday:
+          - sat
+          - sun
+      - condition: state
+        entity_id: input_boolean.weekend_away_thermostat_disable
+        state: 'off'
+    action:
+      entity_id: climate.home
+      service: climate.set_away_mode
+      data:
+        away_mode: 'off'
